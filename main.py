@@ -10,9 +10,10 @@ Image.MAX_IMAGE_PIXELS = None
 root_directory = f"W:/Analysis/Lilli Hofmann"
 channels = ["DAPI", "Atto425", "Atto488", "Cy3", "TR", "Cy5", "Cy7"]
 
-experiment = "exp82LB"
-sample_list = ["425LB", "426LB"]
+experiment = "exp17KP"
+sample_list = ["64KP"]
 
+BG_scan_available = True #is a background scan available for background subtraction (True/False)?
 
 # TODO: create folder structure for CellProfiler analysis
 print("create folder structure for CellProfiler analysis")
@@ -45,14 +46,15 @@ for sample in sample_list:
     crop_align_images_pyStackReg.crop_orig_ROIs(channels=channels, in_channels=in_channels_orig, ROI_list=ROI_list, bounding_box_list=bounding_box_list, out_path=out_path)
 
     # TODO: image registration using pyStackReg rigid-body (rotation + translation) + cropping BG image ROIs
-    crop_align_images_pyStackReg.align_crop_BG_ROIs(in_DAPI_8x8=in_DAPI_8x8, in_DAPI_BG_8x8=in_DAPI_BG_8x8, out_path=out_path_temp, channels=channels, in_channels=in_channels_BG, ROI_list=ROI_list, bounding_box_list=bounding_box_list)
+    if BG_scan_available:
+        crop_align_images_pyStackReg.align_crop_BG_ROIs(in_DAPI_8x8=in_DAPI_8x8, in_DAPI_BG_8x8=in_DAPI_BG_8x8, out_path=out_path_temp, channels=channels, in_channels=in_channels_BG, ROI_list=ROI_list, bounding_box_list=bounding_box_list)
 
     # TODO: final alignment of cropped ROIs
-    print(f"final alignment of cropped BG-ROIs of sample {sample}")
-    align_cropped_ROIs.final_alignment(ROI_list=ROI_list, root_directory=root_directory, experiment=experiment, sample=sample, channels=channels, out_path=out_path_BG)
+        print(f"final alignment of cropped BG-ROIs of sample {sample}")
+        align_cropped_ROIs.final_alignment(ROI_list=ROI_list, root_directory=root_directory, experiment=experiment, sample=sample, channels=channels, out_path=out_path_BG)
 
 
 # TODO: if sample has >3000 ROIs, move files to subfolders
 for sample in sample_list:
-    copy_subfolder.move_to_subfolder(root_directory=root_directory, experiment=experiment, sample=sample)
+    copy_subfolder.move_to_subfolder(root_directory=root_directory, experiment=experiment, sample=sample, BG_scan_available=BG_scan_available)
 

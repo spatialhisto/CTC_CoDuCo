@@ -4,7 +4,7 @@ import shutil
 import pandas
 
 
-def move_to_subfolder(root_directory, experiment, sample):
+def move_to_subfolder(root_directory, experiment, sample, BG_scan_available):
 
     # pathname for potential subfolders
     subfolder_1 = f"{root_directory}/{experiment}/ROI_full_res/{sample}/{sample}_1-3000/"
@@ -31,8 +31,9 @@ def move_to_subfolder(root_directory, experiment, sample):
         for num in range(subfolder_count):
             if not os.path.exists(subfolder_list[num]):
                 os.makedirs(subfolder_list[num])
-            if not os.path.exists(BG_subfolder_list[num]):
-                os.makedirs(BG_subfolder_list[num])
+            if BG_scan_available == True:
+                if not os.path.exists(BG_subfolder_list[num]):
+                    os.makedirs(BG_subfolder_list[num])
 
         for filename in os.listdir(f"{root_directory}/{experiment}/ROI_full_res/{sample}/"):
             if filename.endswith(".tif"):
@@ -55,23 +56,24 @@ def move_to_subfolder(root_directory, experiment, sample):
                 print(f"source: {destination}")
                 shutil.move(source, destination)
 
-        for filename in os.listdir(f"{root_directory}/{experiment}/ROI_full_res/{sample}_BG/"):
-            if filename.endswith(".tif"):
-                print(f"filename: {filename}")
-                # original scan filename structure
-                BG, channel, ROI, num, alignment = filename[:-4].split('_')
-                source = f"{root_directory}/{experiment}/ROI_full_res/{sample}_BG/{filename}"
+        if BG_scan_available:
+            for filename in os.listdir(f"{root_directory}/{experiment}/ROI_full_res/{sample}_BG/"):
+                if filename.endswith(".tif"):
+                    print(f"filename: {filename}")
+                    # original scan filename structure
+                    BG, channel, ROI, num, alignment = filename[:-4].split('_')
+                    source = f"{root_directory}/{experiment}/ROI_full_res/{sample}_BG/{filename}"
 
-                if int(num) < 3001:
-                    destination = BG_subfolder_1 + filename
-                elif int(num) < 6001:
-                    destination = BG_subfolder_2 + filename
-                elif int(num) < 9001:
-                    destination = BG_subfolder_3 + filename
-                else:
-                    destination = BG_subfolder_4 + filename
+                    if int(num) < 3001:
+                        destination = BG_subfolder_1 + filename
+                    elif int(num) < 6001:
+                        destination = BG_subfolder_2 + filename
+                    elif int(num) < 9001:
+                        destination = BG_subfolder_3 + filename
+                    else:
+                        destination = BG_subfolder_4 + filename
 
-                shutil.move(source, destination)
+                    shutil.move(source, destination)
 
 
 # root_directory = f"W:/Analysis/Lilli Hofmann"
