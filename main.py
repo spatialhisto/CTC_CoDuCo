@@ -15,6 +15,9 @@ sample_list = ["64KP"]
 
 BG_scan_available = True #is a background scan available for background subtraction (True/False)?
 
+
+### DON'T CHANGE THE CODE BELOW THIS LINE ###
+
 # TODO: create folder structure for CellProfiler analysis
 print("create folder structure for CellProfiler analysis")
 for sample in sample_list:
