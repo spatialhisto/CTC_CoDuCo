@@ -4,18 +4,18 @@ The Combinatorial Dual-Color (CoDuCo) in situ padlock probe hybridization techni
 
 ![](images/CoDuCo_300DPI.png)  
 
-## CTC_CoDuCo  
 This repository contains the tools for CoDuCo image analysis and CTC classification:  
-I....CellProfiler pipeline to identify regions of interest (ROIs)   
-II...Python scripts for image registration and cropping   
-III..CellProfiler pipeline and classifier model to decode CoDuCo in situ signals and identify CTCs    
----
+I....CellProfiler pipeline to identify regions of interest (ROIs)  
+II...Python scripts for image registration and cropping  
+III..CellProfiler pipeline and classifier model to decode CoDuCo in situ signals and identify CTCs  
+
 
 ## Prerequisites  
 
 This project is compatible with Python 3.8. Required Python packages are listed in the “requirements.txt” file.  
-The CellProfiler pipelines were created for CellProfiler version 4.2.4.
----
+The CellProfiler pipelines were created for CellProfiler version 4.2.4.  
+
+
 ## CoDuCo image analysis and CTC classification
 ### Input images  
 Samples are scanned on a 7-channel fluorescence microscope with a 40x objective.  The “original scan” displays CoDuCo in situ stained samples, while the “background scan”, captured after removing the in situ signals, exclusively represents the samples’ autofluorescence. Images are exported in full resolution and with 8x8 binning.   
