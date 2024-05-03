@@ -9,12 +9,10 @@ I....CellProfiler pipeline to identify regions of interest (ROIs)
 II...Python scripts for image registration and cropping  
 III..CellProfiler pipeline and classifier model to decode CoDuCo in situ signals and identify CTCs  
 
----
 ## Prerequisites  
 
 This project is compatible with Python 3.8. Required Python packages are listed in the “requirements.txt” file.  
 The CellProfiler pipelines were created for CellProfiler version 4.2.4.  
-
 
 ## CoDuCo image analysis and CTC classification
 ### Input images  
