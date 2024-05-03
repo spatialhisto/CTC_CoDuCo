@@ -1,0 +1,742 @@
+[   1] [Images]
+  To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.
+  
+  ! ADD these images:
+  - ROI full res original scan
+  - ROI full res BG scan (if available)
+  - ROI mask binary images
+
+[   2] [Metadata]
+  The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.
+
+[   3] [NamesAndTypes]
+  The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.
+  
+  ! IF no BG scan is available: change rule criteria to "file does not contain BG" for ALL images
+
+[   4] [Groups]
+  The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.
+
+[   5] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+  
+
+[   6] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+
+[   7] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+
+[   8] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+
+[   9] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+
+[  10] [ImageMath]
+  Background subtraction: 
+  There is often high autofluorescence which impairs in situ signal detection.
+  To improve the signal to background ratio, in situ signals are stripped from the sample, the background (BG) image is scanned and aligned and finally subtracted from the original scan.
+  
+  ADJUST multiplication factor for each sample: in the test mode,  hover the mouse over several autofluorescent areas in the cytoplasm to check intensity values - after BG subtraction, the intensity should be close to 0 without losing in situ signals.
+  ! IF no BG scan is available, set multiplication factor of second (=BG) image to 0.
+
+[  11] [Resize]
+  ROIs were identified in the 8x8 binned DAPI image.
+  A binary image of each ROI was saved as ROI_mask_image.
+  The bounding box values of each ROI were multiplied by 8 to scale them to the full resolution image and ROIs were cropped from the full resolution image.
+  
+  This module resizes the ROI_mask_image (multiply by 8) to scale it to the full resolution image.
+
+[  12] [MaskImage]
+  ROIs were identified in the 8x8 binned DAPI image.
+  A binary image of each ROI was saved as ROI_mask_image.
+  The bounding box values of each ROI were multiplied by 8 to scale them to the full resolution image and ROIs were cropped from the full resolution image.
+  
+  The ROI_mask_image was resized (multiplied by 8) to scale it to the full resolution image.
+  This module uses the ROI_mask_resized_image to mask the Nucleus_raw_image.
+  This ensures, that cells which do not belong to this ROI but are located within its bounding box are removed from this ROI.
+
+[  13] [RescaleIntensity]
+  This module rescales the intensity of the DAPI staining so that low intensity staining will be visible in the output images.
+
+[  14] [IdentifyPrimaryObjects]
+  This module identifies high intensity nuclei from DAPI staining.
+  
+  Nuclei are detected in a 2-step approach, high intensity and low intensity nuclei, which are then combined.
+  This decreases the problem of undersegmentation of high intensity nuclei and oversegmentation/loss of low intensity nuclei.
+  
+  ADJUST the typical diameter of objects according to the cell line and magnification (e.g. 30-130 pixels for VCaP cells in 40x magnification; PC-3 cells are much larger)
+  ADJUST lower and upper bounds on threshold (and if necessary the threshold correction factor), to get the best results for identification and declumping of nuclei! In the test mode, you can hover the mouse over the nuclei to get an idea about pixel intensity values (always between 0-1).
+  
+  60 pixel = 10 µm
+
+[  15] [IdentifyPrimaryObjects]
+  This module identifies low intensity nuclei from DAPI staining.
+  
+  Nuclei are detected in a 2-step approach, high intensity and low intensity nuclei, which are then combined.
+  This decreases the problem of undersegmentation of high intensity nuclei and oversegmentation/loss of low intensity nuclei.
+  
+  ADJUST the typical diameter of objects according to the cell line and magnification (e.g. 30-130 pixels for VCaP cells in 40x magnification; PC-3 cells are much larger)
+  ADJUST lower and upper bounds on threshold (and if necessary the threshold correction factor), to get the best results for identification and declumping of nuclei! In the test mode, you can hover the mouse over the nuclei to get an idea about pixel intensity values (always between 0-1).
+  
+  60 pixel = 10 µm
+
+[  16] [CombineObjects]
+  Nuclei are detected in a 2-step approach, high intensity and low intensity nuclei, which are combined in this module.
+  This decreases the problem of undersegmentation of high intensity nuclei and oversegmentation/loss of low intensity nuclei.
+
+[  17] [MeasureObjectSizeShape]
+  Nuclei are detected in a 2-step approach, high intensity and low intensity nuclei, which are then combined.
+  This decreases the problem of undersegmentation of high intensity nuclei and oversegmentation/loss of low intensity nuclei.
+  
+  The combine module may create tiny "remnants" outside the combined nuclei. They can be removed based on their size.
+  This module measures the size of all combined nucleus objects.
+
+[  18] [FilterObjects]
+  Nuclei are detected in a 2-step approach, high intensity and low intensity nuclei, which are then combined.
+  This decreases the problem of undersegmentation of high intensity nuclei and oversegmentation/loss of low intensity nuclei.
+  
+  The combine module may create tiny "remnants" outside the combined nuclei. They can be removed based on their size.
+  This module removes nuclei with area <700 pixels (~radius 15 pixel or 2.5 µm)
+
+[  19] [MeasureObjectSizeShape]
+  This module measures the area of the "final" nucleus objects.
+
+[  20] [FilterObjects]
+  Cell borders are identified by enlarging the nuclei by a specified number of pixels.
+  Most CTCs have larger nuclei and Cytoplasm than PBMCs. If cell borders for small and large nuclei were drawn the same size, in situ signals of neighboring CTCs (or false positive in situ signals from unspecific background/artefacts) would be wrongfully assigned to PBMCs.
+  
+  In this module, we split the nucleus objects into two object sets based on their area.
+  
+  Note: in 3 control samples 233LB, 235LB, 237LB (no tumor cells), 95% of detected cells had a nucleus area >2800 pixels.
+  Source: exp59LB, PBMC_nucleus_area.xlsx 
+
+[  21] [IdentifySecondaryObjects]
+  Cell borders are identified by enlarging the nuclei by a specified number of pixels.
+  Most CTCs have larger nuclei and Cytoplasm than PBMCs. If cell borders for small and large nuclei were drawn the same size, in situ signals of neighboring CTCs (or false positive in situ signals from unspecific background/artefacts) would be wrongfully assigned to PBMCs.
+  Therefore, we split the nucleus objects into two object sets based on their area.
+  
+  Here, small nuclei are expanded by a specified number of pixels (e.g. 12 pixels (~2 µm). 
+  
+  ADJUST the number of pixels by which to expand the nuclei according to your cell line and magnification.
+  Note: the input image is not used by this module, but you can use it to get an idea about the size of your cells in the preview window (select a channel with many in situ signals).
+  
+
+[  22] [IdentifySecondaryObjects]
+  Cell borders are identified by enlarging the nuclei by a specified number of pixels.
+  Most CTCs have larger nuclei and Cytoplasm than PBMCs. If cell borders for small and large nuclei were drawn the same size, in situ signals of neighboring CTCs (or false positive in situ signals from unspecific background/artefacts) would be wrongfully assigned to PBMCs.
+  Therefore, we split the nucleus objects into two object sets based on their area.
+  
+  Here, large nuclei are expanded by a specified number of pixels (e.g. 32 pixels (~5 µm). 
+  
+  ADJUST the number of pixels by which to expand the nuclei according to your cell line and magnification.
+  Note: the input image is not used by this module, but you can use it to get an idea about the size of your cells in the preview window (select a channel with many in situ signals).
+
+[  23] [CombineObjects]
+  Cell borders are identified by enlarging the nuclei by a specified number of pixels.
+  Most CTCs have larger nuclei and Cytoplasm than PBMCs. If cell borders for small and large nuclei were drawn the same size, in situ signals of neighboring CTCs (or false positive in situ signals from unspecific background/artefacts) would be wrongfully assigned to PBMCs.
+  Therefore, we split the nucleus objects into two object sets based on their area before identifying the cell borders.
+  
+  This module combines small and large cells (cell border objects) into one object set.
+  
+  "Segment" will combine both object sets and attempt to re-draw segmentation to separate objects which overlapped. Because the Cell border is larger for large nuclei, the segmentation is also re-drawn in favor of the large cells. This way, the in situ signals of neighboring CTCs are less likely to be assigned to PBMCs
+
+[  24] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the Cy5 channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  25] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the Cy7 channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  26] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the Cy3 channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  27] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the atto425 channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  28] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the atto488 channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  29] [EnhanceOrSuppressFeatures]
+  This enhances the blobs/spots in the texasred channel. It simple makes it more bright and reduces the background.
+  
+  Speckles with a feature size of 10 pixels are enhanced. This image processing tool improves the subsequent identification of RCPs using the module identify primary objects.
+
+[  30] [IdentifyPrimaryObjects]
+  This identifes the Cy5-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of Cy5 spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  31] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  32] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  33] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  34] [IdentifyPrimaryObjects]
+  This identifes the Cy7-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of Cy7 spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  35] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  36] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  37] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  38] [IdentifyPrimaryObjects]
+  This identifes the Cy3-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of Cy3 spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  39] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  40] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  41] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  42] [IdentifyPrimaryObjects]
+  This identifes the atto425-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of atto425 spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  43] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  44] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  45] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  46] [IdentifyPrimaryObjects]
+  This identifes the atto488-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of atto488 spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  47] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  48] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  49] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  50] [IdentifyPrimaryObjects]
+  This identifes the texasred-labelled blobs/spots (after they were enchanced). 
+  
+  ADJUST lower and upper bounds on threshold (and if necessary threshold correction factor and size of smoothing filter).
+  To find the best settings, go to the test mode and choose an image set with high density of texasred spots. 
+  Make sure that the background fluorescence between neighboring spots / the "halos" of very bright spots are not identified as objects. If necessary, increase the size of the smoothing filter and/or change the lower and upper bounds on threshold.
+  If small / low intensity spots are not identified as objects, change the lower bounds on threshold. The calculated threshold is displayed in the "display" window in the test mode. If this calculated threshold is too high, you can decrease the threshold correction factor - the calculated threshold will be closer to your lower bound on threshold.
+
+[  51] [FindMaxima]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  52] [IdentifyPrimaryObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+  This modules FindMaxima and IdentifyPrimaryObjects are used to identify the pixel with maximum intensity in each blob/spot and shrinks the blobs/spots to a single pixel (the pixel with max intensity). 
+
+[  53] [ExpandOrShrinkObjects]
+  The size of identified blobs/spots can be very heterogenous based on their intensity. For downstream analysis, all blobs/spots of a channel should have the same size.
+  
+   All blobs/spots were shrunk to a single pixel.
+  
+  This module expands them by a specified number of pixels (1-2).
+
+[  54] [MaskObjects]
+  There is some crosstalk between cy5 and TR (Cy5 signals visible in TR channel).
+  This module removes all TR signals overlapping with Cy5 signals.
+
+[  55] [EnhanceOrSuppressFeatures]
+  High autofluorescence is often observed at the cell borders, especially in cell clumps. This is observed in all channels except cy7. 
+  In the cy5 and texasred background scan, the high autofluorescence objects can be distinguished from the background/autofluorescence of the cytoplasm.
+  
+  This module enhances the cy5 background image.
+
+[  56] [IdentifyPrimaryObjects]
+  High autofluorescence is often observed at the cell borders, especially in cell clumps. This is observed in all channels except cy7. 
+  In the cy5 and texasred background scan, the high autofluorescence objects can be distinguished from the background/autofluorescence of the cytoplasm.
+  
+  This module identifies the cy5 high autofluorescence objects in the enhanced background image.
+  
+  ADJUST the lower bounds on threshold.
+
+[  57] [EnhanceOrSuppressFeatures]
+  High autofluorescence is often observed at the cell borders, especially in cell clumps. This is observed in all channels except cy7. 
+  In the cy5 and texasred background scan, the high autofluorescence objects can be distinguished from the background/autofluorescence of the cytoplasm.
+  
+  This module enhances the texasred background image.
+
+[  58] [IdentifyPrimaryObjects]
+  High autofluorescence is often observed at the cell borders, especially in cell clumps. This is observed in all channels except cy7. 
+  In the cy5 and texasred background scan, the high autofluorescence objects can be distinguished from the background/autofluorescence of the cytoplasm.
+  
+  This module identifies the texasred high autofluorescence objects in the enhanced background image.
+  
+  ADJUST the lower bounds on threshold.
+
+[  59] [MaskObjects]
+  High autofluorescence is often observed at the cell borders, especially in cell clumps. This is observed in all channels except cy7. 
+  In the cy5 and texasred background scan, the high autofluorescence objects can be distinguished from the background/autofluorescence of the cytoplasm.
+  
+  This module excludes all high autofluorescence objects, that are visible in only one of the two channels (cy5 & texasred).
+
+[  60] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  61] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  62] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  63] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  64] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  65] [ConvertObjectsToImage]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals
+  
+  This module converts the detected blobs into a binary image.
+
+[  66] [ImageMath]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals.
+  
+  the binary images of blobs of all channels (intensity 0.1) are combined (by addition) in one image.
+  blobs visible in 2 channels -> intensity 0.2
+  blobs visible in 3 channels -> intensity 0.3
+  etc.
+  
+  in the next module, this image can be used to identify blobs that are visible in >4 channels as unspecific blobs.
+
+[  67] [IdentifyPrimaryObjects]
+  Some blobs/spots are visible all (or many) channels. These are no true in situ signals but unspecific signals.
+  The binary images of blobs of all channels (intensity 0.1) were combined (by addition) in one image.
+  blobs visible in 2 channels -> intensity 0.2
+  blobs visible in 3 channels -> intensity 0.3
+  etc.
+  
+  In this module, this combined image can be used to identify blobs that are visible in >4 channels as unspecific blobs.
+
+[  68] [Threshold]
+  original scan and BG scan were aligned after cropping (using python).
+  As a result, some BG images contain "empty" areas. This can create artefacts during BG subtraction.
+  Therefore, the "empty" BG areas are identified as objects, using the "threshold" and "ConvertImageToObjects" modules
+  
+  The resulting object can be used for masking.
+
+[  69] [ConvertImageToObjects]
+  original scan and BG scan were aligned after cropping (using python).
+  As a result, some BG images contain "empty" areas. This can create artefacts during BG subtraction.
+  Therefore, the "empty" BG areas are identified as objects, using the "threshold" and "ConvertImageToObjects" modules
+  
+  The resulting object can be used for masking.
+
+[  70] [CombineObjects]
+  This module combines high autofluorescence objects (identified from high texasred and cy5 BG) and empty areas in the BG images to be used as mask.
+
+[  71] [CombineObjects]
+  This module combines high autofluorescence objects (identified from high texasred and cy5 BG), empty areas in the BG images, and unspecific blob objects (visible in >4 channels) to be used as mask.
+
+[  72] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  73] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  74] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  75] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  76] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  77] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  78] [ExpandOrShrinkObjects]
+  This module shrinks the cy5 spots by 1 pixel.
+  
+  (When relating cy5 spots to atto425, atto488, and cy3, larger spots are used because of pixel shift between the channels. When relating cy5 spots to cy7, the smaller spots are used because there is no pixel shift between the channels.)
+
+[  79] [MaskObjects]
+  High autofluorescence objects (identified from high texasred and cy5 BG) and unspecific blob objects (visible in >4 channels) were combined.
+  
+  This module uses the combined objects as mask to exclude in situ signals present in >4 channels or in areas of high autofluorescence.
+
+[  80] [ExpandOrShrinkObjects]
+  This module shrinks the cy7 spots by 1 pixel.
+  
+  (When relating cy7 spots to atto425, atto488, and cy3, larger spots are used because of pixel shift between the channels. When relating cy7 spots to cy5, the smaller spots are used because there is no pixel shift between the channels.)
+
+[  81] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  82] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  83] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  84] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  85] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  86] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  87] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  88] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  89] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  90] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+
+[  91] [RelateObjects]
+  Decoding dual-color in situ signals: this module identifies double positive in situ signals for the respective dual-color combinations.
+  
+  small_1px_cy5 and cy7 are used (no xy-pixel-shift between cy5 and cy7 expected)
+
+[  92] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3)
+
+[  93] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425)
+
+[  94] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488)
+
+[  95] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[  96] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[  97] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[  98] [CombineObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module combines in situ signals of high expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[  99] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks AR-FL (cy5+atto488) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3)
+
+[ 100] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks EPCAM (cy7+atto488) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488)
+
+[ 101] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks AR-V7 (cy7+cy3) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488)
+
+[ 102] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks FOLH1 (cy5+cy3) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488)
+
+[ 103] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks NE (cy5+cy7) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[ 104] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks DLL3 (atto425+cy3) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[ 105] [MaskObjects]
+  Highly expressed genes can lead to overcrowding in cells. Overlapping signals can lead to false positives 
+  e.g. overlapping KRT (cy5+atto425) and VIM (atto488+cy3) produces false positive AR-FL (cy5+atto488)
+  To avoid this, highly expressed genes can be used to mask genes with lower expression.
+  
+  This module masks SLFN11 (atto425+atto488) signals by highly expressed genes:
+  KRT (cy5+atto425) and VIM (atto488+cy3) and KLK3 (cy7+atto425) and AR-FL (cy5+atto488) + (...)
+
+[ 106] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 107] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 108] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 109] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 110] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 111] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 112] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 113] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 114] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 115] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 116] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 117] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 118] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 119] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 120] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 121] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 122] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+
+[ 123] [RelateObjects]
+  This modules establishes a parent-child between the blobs ("children") and the cells ("parents") in order to determine which blob belong to which cell. Each blob is assigned to its "parent" cell and the number of blobs per cell is counted.
+  
+  (unspecific objects present in >4 channels)
+
+[ 124] [OverlayOutlines]
+  Visualization of results: show object outlines of nuclei, cell borders ("parents"), and decoded in situ signals on the enhanced DAPI image.
+
+[ 125] [MeasureObjectSizeShape]
+  Measure size and shape of cells
+
+[ 126] [MeasureObjectIntensity]
+  Measure intensity of nuclei.
+
+[ 127] [MeasureGranularity]
+  Measure granularity of nuclei.
+
+[ 128] [MeasureTexture]
+  Measure texture of nuclei.
+
+[ 129] [MeasureObjectNeighbors]
+  This module determins neighbors of cells.
+
+[ 130] [SaveImages]
+  This module saves the image showing object outlines of nuclei, cell borders, and decoded in situ signals on the enhanced DAPI image.
+  
+  CHANGE OUTPUT FOLDER!
+
+[ 131] [ClassifyObjects]
+  A random forest classifier was trained and tested on control samples (blood samples of healthy controls with and without spiked VCaP and PC-3 cells) using CellProfiler Analyst.
+  The training dataset contained 200 CTCs, 500 PBMCs, 100 artefacts, 100 in situ negative cells, and 100 in situ false positive cells.
+  
+  Here, this classifier model is used to classify the cells in this sample.
+  
+  
+
+[ 132] [ExportToSpreadsheet]
+  This module will give you the export, of the number of blobs in each cell as well as the area and intensity of the blobs.
+  
+  This module creates and saves text files containing the selected data: e.g.  the number of FITC, Cy3, and Cy5 blobs per cell and the measurements of area, integrated and mean intensity of blobs.
+  
+  CHANGE OUTPUT FOLDER!
