@@ -2,7 +2,7 @@
 
 The Combinatorial Dual-Color (CoDuCo) in situ padlock probe hybridization technique allows for the visualization of transcripts within cells. This method employs up to 15 unique dual-color codes to differentiate between transcripts, facilitating the identification and characterization of rare cells, such as circulating tumor cells (CTCs). 
 
-![](images/CoDuCo_300DPI.png)  
+![CoDuCo technique](images/CoDuCo_300DPI.png)  
 
 This repository contains the tools for CoDuCo image analysis and CTC classification:  
 I....CellProfiler pipeline to identify regions of interest (ROIs)  
@@ -55,4 +55,4 @@ The cropped full resolution images and the binary ROI images are subjected to a 
   - class and in situ signal count for each cell (csv file)
   - visualized results displaying decoded in situ signals on the DAPI image (tiff files)
 
-![](images/github_workflow_300DPI.png)
+![CoDuCo image analysis and CTC classification workflow](images/github_workflow_300DPI.png)
