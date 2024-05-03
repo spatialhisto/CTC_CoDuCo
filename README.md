@@ -4,7 +4,7 @@ The Combinatorial Dual-Color (CoDuCo) in situ padlock probe hybridization techni
 
 ![](images/CoDuCo_300DPI.png)  
 
-
+## CTC_CoDuCo  
 This repository contains the tools for CoDuCo image analysis and CTC classification:  
 I....CellProfiler pipeline to identify regions of interest (ROIs)   
 II...Python scripts for image registration and cropping   
