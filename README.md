@@ -25,7 +25,7 @@ Run the CellProfiler pipeline `I_CellProfiler_identify_ROIs/identify_ROIs.cpproj
 
 - **Output:**
   - coordinates of ROI bounding boxes (csv file)
-  - cropped binary image of each ROI (tiff files)
+  - cropped binary image of each ROI (TIF files)
 
 ### II. Image registration and cropping full resolution ROI images
 Run the Python script `main.py`  
@@ -34,7 +34,7 @@ Run the Python script `main.py`
 - For optimal alignment, rigid body registration, based on the DAPI channel, is repeated for each cropped full-resolution ROI image.
 
 - **Output:**
-  - cropped and aligned full resolution images of each ROI (tiff files)
+  - cropped and aligned full resolution images of each ROI (TIF files)
 
 ### III. CoDuCo in situ signal decoding and cell classification 
 Run the CellProfiler pipeline `III_CellProfiler_decoding_classification/decoding_classification.cpproj`    
@@ -50,6 +50,6 @@ The cropped full resolution images and the binary ROI images are subjected to a 
   
 - **Output:**
   - class and in situ signal count for each cell (csv file)
-  - visualized results displaying decoded in situ signals on the DAPI image (tiff files)
+  - visualized results displaying decoded in situ signals on the DAPI image (TIF files)
 
 ![CoDuCo image analysis and CTC classification workflow](images/github_workflow_300DPI.png)
