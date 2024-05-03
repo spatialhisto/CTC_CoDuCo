@@ -1,0 +1,59 @@
+[   1] [Images]
+  To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.
+  
+  ! ADD the 8x8 binned DAPI image to detect areas occupied by cells ("ROIs")
+
+[   2] [Metadata]
+  The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.
+
+[   3] [NamesAndTypes]
+  The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.
+
+[   4] [Groups]
+  The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.
+
+[   5] [IdentifyPrimaryObjects]
+  identify nuclei from compressed DAPI image 
+  
+  8x8 binning --> 1 pixel = 1.3 µm / 1 µm = 0.77 pixel
+  4 pixel = 5.2 µm
+  3000 pixel = 3900 µm
+  
+  ! ADJUST lower and upper bounds on threshold
+
+[   6] [IdentifySecondaryObjects]
+  expand nuclei to the cell borders
+
+[   7] [SplitOrMergeObjects]
+  merge touching cells to identify regions of interest (ROI). 
+  The bounding box of merged cells will be used to cut ROI from original, uncompressed image files and further analysis (in situ signal detection).
+
+[   8] [MeasureObjectSizeShape]
+  Measure object size and shape of merged cells (=ROIs)
+
+[   9] [ConvertObjectsToImage]
+  Convert ROI objects to binary image to be used as mask.
+
+[  10] [SaveCroppedObjects]
+  Crop and save individual binary ROI images to be used as mask.
+  
+  ! CHANGE output folder
+
+[  11] [ExportToSpreadsheet]
+  Export the ROI bounding box values to a spreadsheet.
+  
+  ! CHANGE output folder
+
+[  12] [RescaleIntensity]
+  Normalize DAPI image for better visibility of output image.
+
+[  13] [OverlayOutlines]
+  Overlay outlines of detected ROIs on output image.
+
+[  14] [DisplayDataOnImage]
+  Display the number (ID number) on all detected ROIs on output image.
+
+[  15] [SaveImages]
+  Save the output image with normalized DAPI image, ROI outlines and ROI ID numbers.
+  
+  ! CHANGE output folder

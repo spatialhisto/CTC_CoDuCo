@@ -30,7 +30,7 @@ def final_alignment(ROI_list, root_directory, experiment, sample, channels, out_
         del reference_image, moving_image
         gc.collect()
 
-        # TODO: align and save ROIs from background image
+        # align and save ROIs from background image
         for ch in range(len(channels)):
             channel = channels[ch]
             print(f"{root_directory}/{experiment}/ROI_full_res/{sample}_BG_temp/BG_{channel}_ROI_{prefix}{ROI_list[i]}.tif")

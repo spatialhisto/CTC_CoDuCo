@@ -8,7 +8,7 @@ from pystackreg import StackReg
 from skimage import io
 
 
-# TODO: path to input and output files
+# path to input and output files
 
 def define_path(root_directory, experiment, sample):
 
@@ -53,7 +53,7 @@ def define_path(root_directory, experiment, sample):
     return in_channels_orig, in_channels_BG, in_DAPI_8x8, in_DAPI_BG_8x8, in_ROI_table, out_path, out_path_temp, out_path_BG
 
 
-# TODO: create ROI list
+# create ROI list
 def create_ROI_list(in_ROI_table):
     ROI_table = pandas.read_csv(in_ROI_table)
     ROI_list = []
@@ -72,7 +72,7 @@ def create_ROI_list(in_ROI_table):
     return ROI_list, bounding_box_list
 
 
-# TODO: crop and save ROIs
+# crop and save ROIs
 def crop_orig_ROIs(channels, in_channels, ROI_list, bounding_box_list, out_path):
     for i in range(len(channels)):
         channel = channels[i]
@@ -98,7 +98,7 @@ def crop_orig_ROIs(channels, in_channels, ROI_list, bounding_box_list, out_path)
         gc.collect()
 
 
-# TODO: image registration using pyStackReg rigid-body (rotation + translation) + cropping BG image ROIs
+# image registration using pyStackReg rigid-body (rotation + translation) + cropping BG image ROIs
 def align_crop_BG_ROIs(in_DAPI_8x8, in_DAPI_BG_8x8, out_path, channels, in_channels, ROI_list, bounding_box_list):
     # 8x8 binned images are used for registration to get a transformation matrix
     print("loading images for registration")
@@ -154,7 +154,7 @@ def align_crop_BG_ROIs(in_DAPI_8x8, in_DAPI_BG_8x8, out_path, channels, in_chann
     del reference_image, moving_image, moving_image_aligned, temp_image_ref, temp_image_mov, multiplex_image, image_rgb
     gc.collect()
 
-    # TODO: crop and save ROIs from background image
+    # crop and save ROIs from background image
     for i in range(len(channels)):
         channel = channels[i]
         input = in_channels[i]
