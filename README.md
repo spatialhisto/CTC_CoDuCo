@@ -23,8 +23,7 @@ Input images can be shared on reasonable request.
 Run the CellProfiler pipeline `I_CellProfiler_identify_ROIs/identify_ROIs.cpproj`  
 - The 8x8 binned original scan DAPI image is segmented to detect regions of interests (ROIs), i.e. regions that are occupied by nuclei.  
 
-
-- Output:
+- **Output:**
   - coordinates of ROI bounding boxes (csv file)
   - cropped binary image of each ROI (tiff files)
 
@@ -34,8 +33,7 @@ Run the Python script `main.py`
 - ROIs are cropped from these full-resolution images using coordinates of ROI bounding boxes from CellProfiler. 
 - For optimal alignment, rigid body registration, based on the DAPI channel, is repeated for each cropped full-resolution ROI image.
 
-
-- Output:
+- **Output:**
   - cropped and aligned full resolution images of each ROI (tiff files)
 
 ### III. CoDuCo in situ signal decoding and cell classification 
@@ -50,8 +48,7 @@ The cropped full resolution images and the binary ROI images are subjected to a 
 - The “RelateObjects” module is used to assign the decoded in situ signals to appointed cells. 	
 - Cells are classified based on their in situ signal counts using a random forest model trained on control samples in CellProfiler Analyst.	   
   
-
-- Output: 	
+- **Output:**
   - class and in situ signal count for each cell (csv file)
   - visualized results displaying decoded in situ signals on the DAPI image (tiff files)
 
