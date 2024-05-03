@@ -5,6 +5,7 @@ import crop_align_images_pyStackReg
 import align_cropped_ROIs
 import copy_subfolder
 
+
 Image.MAX_IMAGE_PIXELS = None
 
 # specify root directory, experiment ID, sample IDs, channel names, and availability of background scan

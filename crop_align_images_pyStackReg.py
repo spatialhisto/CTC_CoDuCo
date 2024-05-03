@@ -9,7 +9,6 @@ from skimage import io
 
 
 # path to input and output files
-
 def define_path(root_directory, experiment, sample):
 
     # path to original images

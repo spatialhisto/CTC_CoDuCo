@@ -1,6 +1,5 @@
 import os
 
-
 def zero_padding_renamer(ROI_path):
     for filename in os.listdir(ROI_path):
         if filename.startswith("ROI_") and filename.endswith(".tiff"):

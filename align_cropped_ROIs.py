@@ -3,7 +3,6 @@ import numpy as np
 from pystackreg import StackReg, util
 from skimage import io
 
-
 def final_alignment(ROI_list, root_directory, experiment, sample, channels, out_path):
     for i in range(len(ROI_list)):
         max_digits = len(str(len(ROI_list)))
