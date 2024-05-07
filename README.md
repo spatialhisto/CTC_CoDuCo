@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/797158336.svg)](https://zenodo.org/doi/10.5281/zenodo.11125571)
+
 # CTC_CoDuCo  
 
 The Combinatorial Dual-Color (CoDuCo) in situ padlock probe hybridization technique allows for the visualization of transcripts within cells. This method employs up to 15 unique dual-color codes to differentiate between transcripts, facilitating the identification and characterization of rare cells, such as circulating tumor cells (CTCs). 
@@ -59,4 +61,4 @@ The cropped full resolution images and the binary ROI images are subjected to a 
 This work is licensed under CC BY-NC 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
 
 ## How to cite
-.
+LilliBonstingl (2024) „spatialhisto/CTC_CoDuCo: v1.0.0“. Zenodo. doi: 10.5281/zenodo.11125572.
