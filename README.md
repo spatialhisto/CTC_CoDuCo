@@ -9,6 +9,7 @@ I....CellProfiler pipeline to identify regions of interest (ROIs)
 II...Python scripts for image registration and cropping  
 III..CellProfiler pipeline and classifier model to decode CoDuCo in situ signals and identify CTCs  
 
+
 ## Prerequisites  
 
 This project is compatible with Python 3.8. Required Python packages are listed in the “requirements.txt” file.  
@@ -53,3 +54,6 @@ The cropped full resolution images and the binary ROI images are subjected to a 
   - visualized results displaying decoded in situ signals on the DAPI image (TIF files)
 
 ![CoDuCo image analysis and CTC classification workflow](images/github_workflow_300DPI.png)
+
+## License
+This work is licensed under CC BY-NC 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
