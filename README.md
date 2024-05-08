@@ -61,4 +61,7 @@ The cropped full resolution images and the binary ROI images are subjected to a 
 This work is licensed under CC BY-NC 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
 
 ## How to cite
-Bonstingl, L. (2024) „spatialhisto/CTC_CoDuCo“. Zenodo. doi: 10.5281/zenodo.11125572.
+Bonstingl, L. (2024) „spatialhisto/CTC_CoDuCo“. Zenodo. doi: [10.5281/zenodo.11125572](https://doi.org/10.5281/zenodo.11125572).
+
+## Acknowledgements
+Figures were created with BioRender.com and Inkscape.
